@@ -1,0 +1,81 @@
+/* Reveal + split text + photo strip motion. transform and opacity only. */
+
+/* Hidden initial state exists only after JS adds html.js-reveal (never under reduced motion). */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal [data-split] .split-word {
+    opacity: 0;
+    transform: translateY(0.45em);
+    will-change: transform, opacity;
+    transition: opacity 450ms var(--ease), transform 450ms var(--ease);
+    transition-delay: min(calc(var(--i, 0) * var(--word-stagger, 35ms)), 210ms);
+  }
+  html.js-reveal [data-split].is-revealed .split-word {
+    opacity: 1;
+    transform: none;
+  }
+  html.js-reveal [data-split].is-settled .split-word { will-change: auto; }
+
+  /* Hero title must be fully visible by ~600ms. */
+  html.js-reveal .hero [data-split] .split-word {
+    transition-duration: 350ms;
+    transition-delay: min(calc(var(--i, 0) * 30ms), 120ms);
+  }
+
+  html.js-reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    will-change: transform, opacity;
+    transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+  }
+  html.js-reveal [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+  html.js-reveal [data-reveal].is-settled { will-change: auto; }
+}
+
+.split-word { display: inline-block; }
+
+/* ---- Photo strip ---- */
+.strip__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.strip__viewport::-webkit-scrollbar { display: none; }
+
+.strip__track {
+  --strip-gap: 0.75rem;
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: strip-drift calc(var(--strip-count, 6) * 6s) linear infinite;
+}
+.strip__slide {
+  flex: 0 0 auto;
+  width: clamp(9rem, 42vw, 20rem);
+  aspect-ratio: 4 / 3;
+  margin: 0 var(--strip-gap) 0 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--blue-100);
+}
+.strip__slide picture { display: block; width: 100%; height: 100%; }
+.strip__slide img { width: 100%; height: 100%; object-fit: cover; }
+
+.strip__viewport.is-paused .strip__track { animation-play-state: paused; }
+
+@keyframes strip-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip__track { animation: none; }
+}
