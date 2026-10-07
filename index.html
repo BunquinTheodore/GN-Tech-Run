@@ -40,7 +40,7 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
   <div id="splash" aria-hidden="true"><div class="splash__title"><span>Tech</span><span>Run</span></div></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -75,7 +75,7 @@
           <a id="hero-register" class="btn btn--primary js-register" href="#cta">Register Now</a>
           <button id="watch-video" class="btn btn--ghost" type="button" aria-haspopup="dialog">Watch video</button>
         </div>
-        <p id="countdown" class="countdown" role="timer" aria-live="off"></p>
+        <p id="countdown" class="countdown" role="timer" aria-live="off" hidden></p>
       </div>
     </section>
 
@@ -96,16 +96,18 @@
       </div>
     </section>
 
-    <section id="faq" class="faq container" aria-labelledby="faq-title">
+    <div class="duo container">
+    <section id="faq" class="faq" aria-labelledby="faq-title">
       <h2 id="faq-title" class="section-title" data-split>Questions</h2>
       <div id="faq-list" class="faq__list"></div>
     </section>
 
-    <section id="cta" class="final-cta container" aria-labelledby="cta-title">
+    <section id="cta" class="final-cta" aria-labelledby="cta-title">
       <h2 id="cta-title" class="section-title" data-split>Ready to run?</h2>
       <p id="deadline-text" class="prose" data-reveal></p>
       <a id="final-register" class="btn btn--primary btn--lg js-register" href="#cta">Register Now</a>
     </section>
+    </div>
   </main>
 
   <footer id="site-footer" class="site-footer">
