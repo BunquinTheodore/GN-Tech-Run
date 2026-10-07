@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{seo.title}}</title>
+  <meta name="description" content="{{seo.description}}">
+  <meta name="theme-color" content="#061C47">
+  <link rel="canonical" href="{{siteUrl}}" data-if="siteUrl">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{seo.title}}">
+  <meta property="og:description" content="{{seo.description}}">
+  <meta property="og:url" content="{{siteUrl}}" data-if="siteUrl">
+  <meta property="og:image" content="{{siteUrl}}og.jpg" data-if="siteUrl">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{seo.title}}">
+  <meta name="twitter:description" content="{{seo.description}}">
+  <meta name="twitter:image" content="{{siteUrl}}og.jpg" data-if="siteUrl">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="{{img.hero.webpSrcset}}" imagesizes="100vw" fetchpriority="high">
+
+  <!-- SPLASH (owned by lead). Inline so it paints with first byte. CSS fades it, JS only removes the node. -->
+  <style id="splash-css">
+    #splash{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#061C47;color:#fff;
+      animation:splash-out 300ms ease 800ms forwards;pointer-events:none}
+    #splash .splash__title{display:flex;gap:.28em;font:700 clamp(2.25rem,12vw,4rem)/1 Poppins,system-ui,sans-serif;
+      letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+    #splash .splash__title span{display:inline-block;opacity:0;transform:translateY(.5em);
+      animation:splash-in 500ms cubic-bezier(.2,.8,.2,1) forwards}
+    #splash .splash__title span:nth-child(2){animation-delay:120ms}
+    @keyframes splash-in{to{opacity:1;transform:none}}
+    @keyframes splash-out{to{opacity:0;visibility:hidden}}
+    @media (prefers-reduced-motion:reduce){
+      #splash .splash__title span{animation:none;opacity:1;transform:none}
+      #splash{animation-duration:200ms;animation-delay:600ms}
+    }
+  </style>
+</head>
+<body>
+  <div id="splash" aria-hidden="true"><div class="splash__title"><span>Tech</span><span>Run</span></div></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="bg-fallback" class="bg-fallback" aria-hidden="true"></div>
+  <canvas id="bg3d" class="bg3d" aria-hidden="true"></canvas>
+
+  <header id="site-header" class="site-header">
+    <div class="header__inner">
+      <a class="header__brand" href="#top" aria-label="{{event.name}} home">
+        <img id="logo-techrun" class="logo logo--techrun" src="{{img.logoTechrun.src}}" width="{{img.logoTechrun.width}}" height="{{img.logoTechrun.height}}" alt="{{event.name}}">
+        <img id="logo-irun" class="logo logo--irun" src="{{img.logoIrun.src}}" width="{{img.logoIrun.width}}" height="{{img.logoIrun.height}}" alt="iRun PH">
+      </a>
+      <div class="header__actions">
+        <button id="mute-toggle" class="icon-btn" type="button" aria-pressed="false" aria-label="Mute sound effects"></button>
+        <a id="header-register" class="btn btn--primary btn--sm js-register" href="#cta">Register Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <picture class="hero__media">
+        <source type="image/avif" srcset="{{img.hero.avifSrcset}}" sizes="100vw">
+        <source type="image/webp" srcset="{{img.hero.webpSrcset}}" sizes="100vw">
+        <img id="hero-img" src="{{img.hero.src}}" width="{{img.hero.width}}" height="{{img.hero.height}}" alt="{{img.hero.alt}}" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero__content container">
+        <h1 id="hero-title" class="hero__title" data-split>{{event.name}}</h1>
+        <p id="hero-meta" class="hero__meta"><span id="hero-date"></span> <span id="hero-venue"></span></p>
+        <p id="hero-tagline" class="hero__pitch"></p>
+        <div class="hero__actions">
+          <a id="hero-register" class="btn btn--primary js-register" href="#cta">Register Now</a>
+          <button id="watch-video" class="btn btn--ghost" type="button" aria-haspopup="dialog">Watch video</button>
+        </div>
+        <p id="countdown" class="countdown" role="timer" aria-live="off"></p>
+      </div>
+    </section>
+
+    <section id="about" class="about container" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title" data-split>About the run</h2>
+      <p id="about-text" class="prose" data-reveal></p>
+      <div id="details-grid" class="details-grid" data-reveal></div>
+      <div class="about__actions">
+        <button id="cal-ics" class="btn btn--ghost" type="button">Add to calendar</button>
+        <a id="cal-google" class="btn btn--ghost" href="#" target="_blank" rel="noopener">Google Calendar</a>
+        <button id="share-btn" class="btn btn--ghost" type="button">Share</button>
+      </div>
+    </section>
+
+    <section id="gallery" class="strip" aria-label="Photo gallery">
+      <div id="photo-strip" class="strip__viewport" tabindex="0" role="region" aria-label="Photos, swipe sideways">
+        <div id="strip-track" class="strip__track"></div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq container" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section-title" data-split>Questions</h2>
+      <div id="faq-list" class="faq__list"></div>
+    </section>
+
+    <section id="cta" class="final-cta container" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="section-title" data-split>Ready to run?</h2>
+      <p id="deadline-text" class="prose" data-reveal></p>
+      <a id="final-register" class="btn btn--primary btn--lg js-register" href="#cta">Register Now</a>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__logos">
+        <img class="logo logo--techrun" src="{{img.logoTechrun.src}}" width="{{img.logoTechrun.width}}" height="{{img.logoTechrun.height}}" alt="{{event.name}}" loading="lazy">
+        <img class="logo logo--irun" src="{{img.logoIrun.src}}" width="{{img.logoIrun.width}}" height="{{img.logoIrun.height}}" alt="iRun PH" loading="lazy">
+      </div>
+      <ul id="social-links" class="socials"></ul>
+      <p id="disclaimer" class="footer__note"></p>
+      <p class="footer__note"><a href="https://icons8.com/cursors" target="_blank" rel="noopener">Cursor by Icons8</a></p>
+    </div>
+  </footer>
+
+  <div id="sticky-bar" class="sticky-bar" hidden>
+    <a id="sticky-register" class="btn btn--primary js-register" href="#cta">Register Now</a>
+  </div>
+
+  <dialog id="video-modal" class="modal" aria-label="Event video">
+    <div class="modal__panel">
+      <button id="video-close" class="icon-btn modal__close" type="button" aria-label="Close video"></button>
+      <div id="video-stage" class="modal__stage">
+        <button id="video-play" class="modal__thumb" type="button" aria-label="Play video"></button>
+      </div>
+      <a id="video-drive-link" class="modal__fallback" href="#" target="_blank" rel="noopener">Open on Drive</a>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

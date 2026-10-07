@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "src": "/img/hero-1080.webp",
+    "avifSrcset": "/img/hero-480.avif 480w, /img/hero-768.avif 768w, /img/hero-1080.avif 1080w, /img/hero-1600.avif 1600w",
+    "webpSrcset": "/img/hero-480.webp 480w, /img/hero-768.webp 768w, /img/hero-1080.webp 1080w, /img/hero-1600.webp 1600w",
+    "width": 1600,
+    "height": 1067,
+    "alt": "PLACEHOLDER hero photo"
+  },
+  "logoTechrun": { "src": "/img/logo-techrun.svg", "width": 160, "height": 48, "alt": "Tech Run" },
+  "logoIrun": { "src": "/img/logo-irunph.svg", "width": 120, "height": 48, "alt": "iRun PH" },
+  "gallery": []
+}

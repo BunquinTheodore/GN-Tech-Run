@@ -1,0 +1,41 @@
+{
+  "registrationOpen": true,
+  "siteUrl": "",
+  "seo": {
+    "title": "Tech Run | Register now",
+    "description": "Tech Run, co-presented with iRun PH. Register on Monno."
+  },
+  "event": {
+    "name": "Tech Run",
+    "tagline": "",
+    "about": "",
+    "dateISO": "",
+    "endISO": "",
+    "venue": { "name": "", "address": "", "mapUrl": "" },
+    "categories": [],
+    "fee": "",
+    "deadlineISO": "",
+    "inclusions": []
+  },
+  "registration": {
+    "monnoUrl": "",
+    "utm": { "source": "techrun-site", "medium": "landing", "campaign": "techrun-2026" }
+  },
+  "video": { "driveFileId": "" },
+  "tracking": { "metaPixelId": "" },
+  "socials": { "facebook": "", "instagram": "", "tiktok": "", "youtube": "" },
+  "faq": [
+    { "id": "kit-pickup", "q": "Where and when is kit pickup?", "a": "" },
+    { "id": "route", "q": "What is the route and start time?", "a": "" },
+    { "id": "parking", "q": "Is there parking?", "a": "" },
+    { "id": "refunds", "q": "Can I get a refund?", "a": "" },
+    { "id": "bring", "q": "What should I bring?", "a": "" }
+  ],
+  "ui": {
+    "registerLabel": "Register Now",
+    "closedLabel": "Registration closed",
+    "soonLabel": "Registration link coming soon",
+    "tbaLabel": "To be announced",
+    "disclaimer": "Tech Run is co-presented with iRun PH. Registration is handled on Monno."
+  }
+}

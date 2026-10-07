@@ -1,0 +1,17 @@
+node_modules
+dist
+.env
+.env.*
+.vercel
+/assets-raw
+/assets
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.claude/
+lighthouse-reports/
+screenshots/
+*.mp4
+*.mov
+*.webm
