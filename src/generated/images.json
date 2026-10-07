@@ -5,9 +5,69 @@
     "webpSrcset": "/img/hero-480.webp 480w, /img/hero-768.webp 768w, /img/hero-1080.webp 1080w, /img/hero-1600.webp 1600w",
     "width": 1600,
     "height": 1067,
-    "alt": "PLACEHOLDER hero photo"
+    "alt": "PLACEHOLDER photo 1"
   },
-  "logoTechrun": { "src": "/img/logo-techrun.svg", "width": 160, "height": 48, "alt": "Tech Run" },
-  "logoIrun": { "src": "/img/logo-irunph.svg", "width": 120, "height": 48, "alt": "iRun PH" },
-  "gallery": []
+  "logoTechrun": {
+    "src": "/img/logo-techrun.svg",
+    "width": 160,
+    "height": 48,
+    "alt": "Tech Run"
+  },
+  "logoIrun": {
+    "src": "/img/logo-irunph.svg",
+    "width": 120,
+    "height": 48,
+    "alt": "iRun PH"
+  },
+  "gallery": [
+    {
+      "src": "/img/g1-800.webp",
+      "avifSrcset": "/img/g1-480.avif 480w, /img/g1-800.avif 800w, /img/g1-1200.avif 1200w",
+      "webpSrcset": "/img/g1-480.webp 480w, /img/g1-800.webp 800w, /img/g1-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 2"
+    },
+    {
+      "src": "/img/g2-800.webp",
+      "avifSrcset": "/img/g2-480.avif 480w, /img/g2-800.avif 800w, /img/g2-1200.avif 1200w",
+      "webpSrcset": "/img/g2-480.webp 480w, /img/g2-800.webp 800w, /img/g2-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 3"
+    },
+    {
+      "src": "/img/g3-800.webp",
+      "avifSrcset": "/img/g3-480.avif 480w, /img/g3-800.avif 800w, /img/g3-1200.avif 1200w",
+      "webpSrcset": "/img/g3-480.webp 480w, /img/g3-800.webp 800w, /img/g3-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 4"
+    },
+    {
+      "src": "/img/g4-800.webp",
+      "avifSrcset": "/img/g4-480.avif 480w, /img/g4-800.avif 800w, /img/g4-1200.avif 1200w",
+      "webpSrcset": "/img/g4-480.webp 480w, /img/g4-800.webp 800w, /img/g4-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 5"
+    },
+    {
+      "src": "/img/g5-800.webp",
+      "avifSrcset": "/img/g5-480.avif 480w, /img/g5-800.avif 800w, /img/g5-1200.avif 1200w",
+      "webpSrcset": "/img/g5-480.webp 480w, /img/g5-800.webp 800w, /img/g5-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 6"
+    },
+    {
+      "src": "/img/g6-800.webp",
+      "avifSrcset": "/img/g6-480.avif 480w, /img/g6-800.avif 800w, /img/g6-1200.avif 1200w",
+      "webpSrcset": "/img/g6-480.webp 480w, /img/g6-800.webp 800w, /img/g6-1200.webp 1200w",
+      "width": 1200,
+      "height": 800,
+      "alt": "PLACEHOLDER photo 7"
+    }
+  ],
+  "placeholder": true
 }
