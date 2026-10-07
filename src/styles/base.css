@@ -3,7 +3,7 @@
 @font-face { font-family: Poppins; font-weight: 700; font-style: normal; font-display: swap; src: url(/fonts/poppins-700.woff2) format("woff2"); }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--safe-top)); }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--safe-top)); scroll-padding-bottom: calc(var(--sticky-h) + var(--safe-bottom) + 0.5rem); }
 body {
   margin: 0;
   min-height: 100svh;
@@ -28,7 +28,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.15; text-wrap: balance; }
 .skip-link:focus { top: calc(0.5rem + var(--safe-top)); }
 
 :focus-visible { outline: 3px solid var(--blue-600); outline-offset: 3px; }
-.hero :focus-visible, .modal :focus-visible, #splash :focus-visible { outline-color: var(--blue-200); }
+.hero :focus-visible, .final-cta :focus-visible, .modal :focus-visible, #splash :focus-visible { outline-color: var(--blue-200); }
 main:focus { outline: none; }
 
 .btn {

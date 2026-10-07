@@ -43,7 +43,13 @@ function bindPause(viewport) {
     viewport.classList.add('is-paused');
   };
   const hovering = () => matchMedia('(hover: hover)').matches && viewport.matches(':hover');
-  const keyboardFocused = () => viewport.matches(':has(:focus-visible), :focus-visible');
+  const keyboardFocused = () => {
+    try {
+      return viewport.matches(':has(:focus-visible), :focus-visible');
+    } catch {
+      return viewport.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+    }
+  };
   const resumeSoon = () => {
     clearTimeout(timer);
     timer = setTimeout(() => {

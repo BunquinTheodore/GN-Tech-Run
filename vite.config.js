@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite';
 import fs from 'node:fs';
 
-const readJson = (file) => {
+const readJson = (file, { optional = false } = {}) => {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
-  } catch {
-    return {};
+  } catch (error) {
+    if (optional && error.code === 'ENOENT') return {};
+    throw new Error(`Cannot read ${file}: ${error.message}`);
   }
+};
+
+/** siteUrl from config, else the Vercel production domain; always with one trailing slash. */
+const resolveSiteUrl = (configured) => {
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const raw = configured || (vercel ? `https://${vercel}` : '');
+  return raw ? `${raw.replace(/\/+$/, '')}/` : '';
 };
 const escapeHtml = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -23,7 +31,15 @@ function htmlTokens() {
     transformIndexHtml: {
       order: 'pre',
       handler(html) {
-        const data = { ...readJson('event.config.json'), img: readJson('src/generated/images.json') };
+        const eventConfig = readJson('event.config.json');
+        const data = {
+          ...eventConfig,
+          siteUrl: resolveSiteUrl(eventConfig.siteUrl),
+          img: readJson('src/generated/images.json', { optional: true }),
+        };
+        if (data.img.placeholder) {
+          console.warn('[html-tokens] PLACEHOLDER logos/photos in use: run npm run optimize-assets with real files in /assets');
+        }
         const empty = new Set();
         const kept = html.replace(/<[^>]*\sdata-if="([\w.]+)"[^>]*>/g, (tag, key) =>
           lookup(data, key) ? tag.replace(/\sdata-if="[\w.]+"/, '') : ''

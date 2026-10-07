@@ -50,6 +50,7 @@ export function initCountdown() {
     }
   };
   const sync = () => {
+    if (target.getTime() <= Date.now()) render();
     const shouldRun = heroVisible && !document.hidden && target.getTime() > Date.now();
     if (shouldRun && !timer) {
       render();

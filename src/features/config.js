@@ -44,6 +44,16 @@ function valueCard(label, value, tba) {
   return card;
 }
 
+/** Config links must be https; anything else renders as an inert link. */
+function safeUrl(value) {
+  try {
+    const url = new URL(String(value));
+    return url.protocol === 'https:' ? url.href : '#';
+  } catch {
+    return '#';
+  }
+}
+
 function venueCard(tba) {
   const venue = config.event.venue || {};
   const name = clean(venue.name);
@@ -51,7 +61,7 @@ function venueCard(tba) {
   const value = el('p', name ? 'detail-card__value' : 'detail-card__value is-tba');
   if (name && clean(venue.mapUrl)) {
     const link = el('a', '', name);
-    link.href = venue.mapUrl;
+    link.href = safeUrl(venue.mapUrl);
     link.target = '_blank';
     link.rel = 'noopener';
     value.appendChild(link);
@@ -115,7 +125,7 @@ function renderSocials() {
     .map(([key, label]) => {
       const item = el('li');
       const link = el('a', '', label);
-      link.href = config.socials[key];
+      link.href = safeUrl(config.socials[key]);
       link.target = '_blank';
       link.rel = 'noopener';
       item.appendChild(link);
@@ -135,6 +145,9 @@ function bindRegister(state) {
       link.target = '_blank';
       link.rel = 'noopener';
       link.removeAttribute('aria-disabled');
+      link.removeAttribute('role');
+      link.removeAttribute('tabindex');
+      link.removeAttribute('aria-label');
     } else {
       const compact = link.id === 'header-register';
       const closed = state === 'closed';
@@ -143,6 +156,9 @@ function bindRegister(state) {
       link.removeAttribute('target');
       link.removeAttribute('rel');
       link.setAttribute('aria-disabled', 'true');
+      link.setAttribute('role', 'link');
+      link.tabIndex = 0;
+      link.setAttribute('aria-label', closed ? ui.closedLabel : ui.soonLabel);
     }
   });
 }

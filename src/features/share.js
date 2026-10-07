@@ -19,6 +19,7 @@ function legacyCopy(text) {
   area.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
   document.body.appendChild(area);
   area.select();
+    area.setSelectionRange(0, area.value.length);
   let ok = false;
   try {
     ok = document.execCommand('copy');
@@ -46,8 +47,9 @@ async function copyLink(url) {
 async function share() {
   const url = config.siteUrl || `${location.origin}${location.pathname}`;
   const data = { title: config.seo?.title || config.event?.name || document.title, text: config.seo?.description || '', url };
-  if (typeof navigator.share === 'function' && (typeof navigator.canShare !== 'function' || navigator.canShare(data))) {
+  if (typeof navigator.share === 'function') {
     try {
+      if (typeof navigator.canShare === 'function' && !navigator.canShare(data)) throw new Error('unshareable');
       await navigator.share(data);
       return;
     } catch (error) {

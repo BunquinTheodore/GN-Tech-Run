@@ -42,6 +42,15 @@ function getContext() {
   return audioCtx;
 }
 
+/** Resumes from a click, the activation iOS and in-app WebViews accept. */
+function resumeContext() {
+  try {
+    if (!muted) getContext()?.resume?.();
+  } catch {
+    /* audio is optional */
+  }
+}
+
 function tick() {
   if (muted) return;
   try {
@@ -70,7 +79,7 @@ function tick() {
 
 function paintToggle(button) {
   button.setAttribute('aria-pressed', String(muted));
-  button.setAttribute('aria-label', muted ? 'Unmute sound effects' : 'Mute sound effects');
+  button.setAttribute('aria-label', 'Mute sound effects');
   button.innerHTML = muted ? ICON_OFF : ICON_ON;
 }
 
@@ -111,6 +120,7 @@ export function initSfx() {
       if (!matchTarget(event, toggle)) return;
       const fromPointer = event.detail !== 0 && performance.now() - lastPointerTick < POINTER_CLICK_WINDOW_MS;
       if (!fromPointer) tick();
+      else resumeContext();
     },
     { capture: true, passive: true }
   );

@@ -38,8 +38,10 @@ export function initVideoModal() {
     frame.loading = 'lazy';
     frame.title = `${config.event?.name || 'Event'} video`;
     frame.allowFullscreen = true;
+    frame.referrerPolicy = 'no-referrer';
     stage.appendChild(frame);
     play.hidden = true;
+    closeButton?.focus({ preventScroll: true });
   };
   const open = () => {
     lastFocus = document.activeElement;

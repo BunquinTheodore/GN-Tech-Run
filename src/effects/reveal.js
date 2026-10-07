@@ -29,7 +29,7 @@ function splitHeading(heading) {
 /** Drops will-change once the transition is over. */
 function settleWhenDone(el) {
   const done = () => el.classList.add('is-settled');
-  el.addEventListener('transitionend', done, { once: true });
+  el.addEventListener('transitionend', (e) => e.target === el && done(), { once: true });
   setTimeout(done, SETTLE_FALLBACK_MS);
 }
 

@@ -200,8 +200,11 @@ async function start(canvas) {
   const stop = () => cancelLoop();
 
   function onVisibility() {
-    if (document.hidden) stop();
-    else run();
+    if (document.hidden) {
+      // rAF pauses while hidden: restart the FPS sample so hidden time is not counted as slow frames.
+      if (state.frames < WARMUP_FRAMES + MEASURE_FRAMES) state.frames = 0;
+      stop();
+    } else run();
   }
   function onLost(event) {
     event.preventDefault();

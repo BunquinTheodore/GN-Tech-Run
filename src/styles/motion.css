@@ -45,8 +45,8 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, var(--blue-950) 8%, var(--blue-950) 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, var(--blue-950) 8%, var(--blue-950) 92%, transparent 100%);
 }
 .strip__viewport::-webkit-scrollbar { display: none; }
 
@@ -79,3 +79,5 @@
 @media (prefers-reduced-motion: reduce) {
   .strip__track { animation: none; }
 }
+
+.strip__viewport:focus-visible { outline-offset: -3px; }
