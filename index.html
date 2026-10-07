@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" imagesrcset="{{img.hero.webpSrcset}}" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="{{img.hero.avifSrcset}}" imagesizes="100vw" fetchpriority="high">
 
   <!-- SPLASH (owned by lead). Inline so it paints with first byte. CSS fades it, JS only removes the node. -->
   <style id="splash-css">
@@ -60,7 +60,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section id="hero" class="hero" aria-labelledby="hero-title">
       <picture class="hero__media">
         <source type="image/avif" srcset="{{img.hero.avifSrcset}}" sizes="100vw">

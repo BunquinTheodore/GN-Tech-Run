@@ -31,6 +31,20 @@ const whenIdle = (fn) => ('requestIdleCallback' in window ? requestIdleCallback(
 // Order matters: initConfig renders DOM that the rest bind to.
 [initSplash, initConfig, initTracking, initCountdown, initCalendar, initShare, initStickyBar, initVideoModal, initReveal, initCarousel, initSfx].forEach(safely);
 
-const startBackground = () => whenIdle(() => safely(initBackground3D));
-if (document.readyState === 'complete') startBackground();
-else window.addEventListener('load', startBackground, { once: true });
+const BACKGROUND_DELAY_MS = 3500;
+const INTERACTION_EVENTS = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+
+// Keeps three.js off the critical path: start after first interaction or a delay past load.
+const scheduleBackground = () => {
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    INTERACTION_EVENTS.forEach((name) => window.removeEventListener(name, start));
+    whenIdle(() => safely(initBackground3D));
+  };
+  INTERACTION_EVENTS.forEach((name) => window.addEventListener(name, start, { once: true, passive: true }));
+  setTimeout(start, BACKGROUND_DELAY_MS);
+};
+if (document.readyState === 'complete') scheduleBackground();
+else window.addEventListener('load', scheduleBackground, { once: true });

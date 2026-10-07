@@ -136,7 +136,9 @@ function bindRegister(state) {
       link.rel = 'noopener';
       link.removeAttribute('aria-disabled');
     } else {
-      link.textContent = state === 'closed' ? ui.closedLabel : ui.soonLabel;
+      const compact = link.id === 'header-register';
+      const closed = state === 'closed';
+      link.textContent = compact ? (closed ? ui.headerClosedLabel : ui.headerSoonLabel) : (closed ? ui.closedLabel : ui.soonLabel);
       link.removeAttribute('href');
       link.removeAttribute('target');
       link.removeAttribute('rel');

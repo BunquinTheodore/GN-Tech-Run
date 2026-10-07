@@ -51,9 +51,9 @@ body.has-sticky-bar { padding-bottom: calc(var(--sticky-h) + var(--safe-bottom))
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(to top, rgba(6, 28, 71, 0.95) 0%, rgba(6, 28, 71, 0.78) 45%, rgba(6, 28, 71, 0.4) 100%);
 }
-.hero__content { display: grid; gap: var(--space-3); justify-items: start; padding-block: var(--space-12) var(--space-6); }
+.hero__content { display: grid; gap: var(--space-3); justify-items: start; padding-block: var(--space-8) var(--space-6); }
 .hero__title { font-size: var(--fs-h1); white-space: nowrap; }
-.hero__meta { font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.hero__meta { min-height: 1.5rem; font-size: 1rem; font-weight: 600; line-height: 1.5; }
 #hero-venue:not(:empty)::before { content: "\00B7\00A0"; }
 .hero__pitch { max-width: var(--measure); line-height: var(--lh-prose); text-wrap: pretty; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); width: 100%; margin-top: var(--space-2); }
@@ -63,6 +63,7 @@ body.has-sticky-bar { padding-bottom: calc(var(--sticky-h) + var(--safe-bottom))
 
 /* ---------- Sections ---------- */
 main > section, .duo { margin-block: var(--space-6); }
+main > .hero { margin-block-start: 0; }
 .about, .faq, .final-cta { scroll-margin-top: calc(var(--header-h) + var(--safe-top) + 0.5rem); }
 .about { display: grid; gap: var(--space-4); padding: var(--space-6) 1rem; background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); }
 @media (max-width: 71rem) { .about { margin-inline: 0.5rem; width: auto; } }

@@ -44,7 +44,7 @@ async function copyLink(url) {
 }
 
 async function share() {
-  const url = config.siteUrl || location.href;
+  const url = config.siteUrl || `${location.origin}${location.pathname}`;
   const data = { title: config.seo?.title || config.event?.name || document.title, text: config.seo?.description || '', url };
   if (typeof navigator.share === 'function' && (typeof navigator.canShare !== 'function' || navigator.canShare(data))) {
     try {

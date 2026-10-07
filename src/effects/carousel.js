@@ -42,10 +42,12 @@ function bindPause(viewport) {
     clearTimeout(timer);
     viewport.classList.add('is-paused');
   };
+  const hovering = () => matchMedia('(hover: hover)').matches && viewport.matches(':hover');
+  const keyboardFocused = () => viewport.matches(':has(:focus-visible), :focus-visible');
   const resumeSoon = () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (!viewport.matches(':hover') && !viewport.matches(':focus-within')) viewport.classList.remove('is-paused');
+      if (!hovering() && !keyboardFocused()) viewport.classList.remove('is-paused');
     }, RESUME_DELAY_MS);
   };
   const isMouse = (e) => e.pointerType === 'mouse';
@@ -59,11 +61,11 @@ function bindPause(viewport) {
   viewport.addEventListener('touchend', resumeSoon, { passive: true });
   viewport.addEventListener(
     'scroll',
-    () => viewport.classList.contains('is-paused') && !viewport.matches(':hover') && resumeSoon(),
+    () => viewport.classList.contains('is-paused') && !hovering() && resumeSoon(),
     { passive: true }
   );
-  viewport.addEventListener('focusin', pause);
-  viewport.addEventListener('focusout', () => !viewport.matches(':hover') && resumeSoon());
+  viewport.addEventListener('focusin', () => keyboardFocused() && pause());
+  viewport.addEventListener('focusout', () => !hovering() && resumeSoon());
 }
 
 function bindKeys(viewport) {

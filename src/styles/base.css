@@ -27,7 +27,9 @@ h1, h2, h3 { font-weight: 700; line-height: 1.15; text-wrap: balance; }
 .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 10000; padding: 0.75rem 1rem; background: var(--blue-950); color: var(--white); border-radius: var(--radius-sm); }
 .skip-link:focus { top: calc(0.5rem + var(--safe-top)); }
 
-:focus-visible { outline: 3px solid var(--blue-400); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--blue-600); outline-offset: 3px; }
+.hero :focus-visible, .modal :focus-visible, #splash :focus-visible { outline-color: var(--blue-200); }
+main:focus { outline: none; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);

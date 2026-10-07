@@ -34,7 +34,9 @@
   "ui": {
     "registerLabel": "Register Now",
     "closedLabel": "Registration closed",
-    "soonLabel": "Registration link coming soon",
+    "soonLabel": "Opening soon",
+    "headerClosedLabel": "Closed",
+    "headerSoonLabel": "Soon",
     "tbaLabel": "To be announced",
     "disclaimer": "Tech Run is co-presented with iRun PH. Registration is handled on Monno."
   }
