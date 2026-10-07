@@ -1,0 +1,7 @@
+/* Native CSS cursor only (no JS follower). Hotspot at the arrow tip (8,3). */
+@media (hover: hover) and (pointer: fine) {
+  html, body, a, button, summary, label, input, select, textarea, video, iframe, [role="button"],
+  .btn, .icon-btn, dialog, .modal, .modal *, .video-wrapper, #photo-strip, .strip__viewport, .strip__track, .strip__slide, details {
+    cursor: image-set(url(/cursor/cursor-32.svg) 1x, url(/cursor/cursor-64.png) 2x) 8 3, auto;
+  }
+}
